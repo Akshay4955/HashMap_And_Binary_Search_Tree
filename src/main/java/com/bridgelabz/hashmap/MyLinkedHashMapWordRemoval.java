@@ -2,11 +2,11 @@ package com.bridgelabz.hashmap;
 
 import java.util.ArrayList;
 
-public class MyLinkedHashMap<K, V> {
+public class MyLinkedHashMapWordRemoval<K, V> {
     private final int numOfBuckets;
     ArrayList<MyLinkedList<K, V>> myBucketArray;
 
-    public MyLinkedHashMap() {
+    public MyLinkedHashMapWordRemoval() {
         this.numOfBuckets = 10;
         this.myBucketArray = new ArrayList<>(numOfBuckets);
         for (int i = 0; i < numOfBuckets; i++)
@@ -43,9 +43,16 @@ public class MyLinkedHashMap<K, V> {
         }
     }
 
-    @Override
-    public String toString() {
-        return "MyLinkedHashMap{" + myBucketArray + '}';
+    public void remove(K key) {
+        int index = this.getBucketIndex(key);
+        MyLinkedList<K, V> myLinkedList = this.myBucketArray.get(index);
+        MyMapNode<K, V> myMapNode = (MyMapNode<K, V>) myLinkedList.search(key);
+        Integer value = 0;
+        myMapNode.setValue((V) value);
     }
 
+    @Override
+    public String toString() {
+        return "MyLinkedHashMap {" + myBucketArray + '}';
+    }
 }
